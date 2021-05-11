@@ -1662,6 +1662,12 @@ run(void)
 }
 
 void
+runAutostart(void) {
+	system("cd ~/scripts; ./autostart_blocking.sh");
+	system("cd ~/scripts; ./autostart.sh &");
+}
+
+void
 scan(void)
 {
 	unsigned int i, num;
@@ -2634,6 +2640,7 @@ main(int argc, char *argv[])
 		die("pledge");
 #endif /* __OpenBSD__ */
 	scan();
+	runAutostart();
 	run();
 	cleanup();
 	XCloseDisplay(dpy);
